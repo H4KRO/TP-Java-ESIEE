@@ -12,26 +12,13 @@ public class IOCommandes {
 	private PrintStream ecritureReseau;
 	private Socket socket;
 	
-	public IOCommandes(Socket socket){
+	public IOCommandes(Socket socket) throws IOException{
 		this.lectureEcran = new BufferedReader(new InputStreamReader(System.in));
 		this.ecritureEcran = new PrintStream(System.out);
 		
 		this.socket = socket;
-		
-		try {
-			this.lectureReseau = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
-			this.ecritureReseau = new PrintStream(this.socket.getOutputStream());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		this.lectureReseau = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+		this.ecritureReseau = new PrintStream(this.socket.getOutputStream());
 		
 	}
 	
@@ -39,33 +26,15 @@ public class IOCommandes {
 		this.ecritureEcran.print(text);
 	}
 	
-	public String lireEcran() {
-		String entree = "";
-		
-		try {
-			entree = this.lectureEcran.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return entree;
+	public String lireEcran() throws IOException {
+		return this.lectureEcran.readLine();
 	}
 	
 	public void ecrireReseau(String text) {
 		this.ecritureReseau.println(text);
 	}
 	
-	public String lireReseau() {
-		String entry = "";
-		
-		try {
-			entry = this.lectureReseau.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return entry;
+	public String lireReseau() throws IOException {
+		return this.lectureReseau.readLine();
 	}
 }	

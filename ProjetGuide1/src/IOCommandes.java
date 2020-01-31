@@ -17,14 +17,7 @@ public class IOCommandes {
 		this.ecritureEcran.print(text);
 	}
 	
-	public String lireEcran() {
-		String entree = "";
-		try {
-			entree = this.lectureEcran.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return entree;
+	public String lireEcran() throws IOException {
+		return this.lectureEcran.readLine();
 	}
 }	
