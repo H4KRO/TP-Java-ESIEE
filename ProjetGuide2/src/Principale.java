@@ -12,7 +12,6 @@ public class Principale {
 			msg = ioc.lireEcran();
 			ioc.ecrireReseau(msg);
 			ioc.ecrireEcran(ioc.lireReseau());
-			
 		}while(!msg.contentEquals("quit"));
 		socket.close();
 		
